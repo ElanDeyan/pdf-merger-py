@@ -7,19 +7,19 @@ This is a basic project to merge pdf files.
 To get help, run:
 
 ```sh
-path/to/exe -h
+python -m pdf_merger -h
 ```
 
 You can use it like this:
 
 ```sh
-path/to/exe -d dir/with/pdf/files -o result/file.pdf
+python -m pdf_merger -d dir/with/pdf/files -o result/file.pdf
 ```
 
 Or using the long form:
 
 ```sh
-path/to/exe --directory dir/with/pdf/files --output result/file.pdf
+python -m pdf_merger --dir dir/with/pdf/files --output result/file.pdf
 ```
 
 > [!NOTE]

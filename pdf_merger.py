@@ -21,12 +21,25 @@ def pdf_files_in_directory(path: Path) -> Optional[list[Path]]:
 
 
 def merge_pdf_files(files: list[Path], result_path: Path):
-    writer = PdfWriter()
+    try:
+        writer = PdfWriter()
 
-    for file in files:
-        writer.merge(None, fileobj=PdfReader(file, True))
+        for file in files:
+            writer.merge(None, fileobj=PdfReader(file, True))
 
-    writer.write(result_path.with_suffix(PDF_SUFFIX))
+        if result_path.with_suffix(PDF_SUFFIX).exists():
+            response = input(
+                f"The file {result_path.name}.pdf exists, do you want to overwrite? (y/N): "
+            )
+
+            if response.lower() != "y":
+                print("Operation canceled.")
+                return
+
+        writer.write(result_path.with_suffix(PDF_SUFFIX))
+        print('PDFs merged succesfully!')
+    except Exception as e:
+        print(f"Failed to merge: {e}")
 
 
 def main():
