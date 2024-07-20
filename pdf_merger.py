@@ -29,9 +29,12 @@ def merge_pdf_files(files: list[Path], result_path: Path):
     writer.write(result_path.with_suffix(PDF_SUFFIX))
 
 
-if __name__ == "__main__":
+def main():
     args = parser.parse_args()
 
     files = pdf_files_in_directory(Path(args.directory))
     if files is not None:
         merge_pdf_files(files, args.output)
+
+
+main()
