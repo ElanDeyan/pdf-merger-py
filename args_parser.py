@@ -5,25 +5,37 @@ from constants import MERGER_COMMAND_NAME, REPEATER_COMMAND_NAME
 
 
 parser = ArgumentParser(
-    description="Basic python script to merge pdf files in specific dir"
+    description="Basic python script to merge pdf files in specific dir, and repeat n files in one"
 )
 
 subparsers = parser.add_subparsers(dest="command")
 
-merger_parser = subparsers.add_parser(MERGER_COMMAND_NAME)
+merger_parser = subparsers.add_parser(
+    MERGER_COMMAND_NAME,
+    help="Merge all PDF in provided dir",
+    usage="pdf_merger merge -d ./ -o ./result.pdf",
+)
 
 merger_parser.add_argument(
-    "-d", "--dir", type=Path, dest="directory", help="Directory with pdf files to merge"
+    "--dir",
+    "-d",
+    type=Path,
+    dest="directory",
+    help="Directory with pdf files to merge",
 )
 merger_parser.add_argument(
-    "-o",
     "--output",
+    "-o",
     type=Path,
     dest="output",
     help="File (with .pdf suffix) to write the result. The directory needs to be existent.",
 )
 
-repeater_parser = subparsers.add_parser(REPEATER_COMMAND_NAME)
+repeater_parser = subparsers.add_parser(
+    REPEATER_COMMAND_NAME,
+    help="Merge the provided .pdf file n time in one file",
+    usage="pdf_merger repeat -f ./file.pdf -n 3 -o ./result.pdf",
+)
 
 repeater_parser.add_argument(
     "--number",
