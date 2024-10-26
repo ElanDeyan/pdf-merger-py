@@ -1,0 +1,2 @@
+MERGER_COMMAND_NAME = "merge"
+REPEATER_COMMAND_NAME = "repeat"
