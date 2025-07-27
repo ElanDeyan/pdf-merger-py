@@ -1,7 +1,7 @@
 from argparse import Namespace
 from pathlib import Path
-from typing import Optional
-from pypdf import PdfWriter, PdfReader
+
+from pypdf import PdfReader, PdfWriter
 
 from args_parser import parser
 from constants import MERGER_COMMAND_NAME
@@ -9,7 +9,7 @@ from constants import MERGER_COMMAND_NAME
 PDF_SUFFIX = ".pdf"
 
 
-def pdf_files_in_directory(path: Path) -> Optional[list[Path]]:
+def pdf_files_in_directory(path: Path) -> list[Path] | None:
     files: list[Path] = []
 
     if path.is_dir():
@@ -43,7 +43,7 @@ def repeat_files(file: Path, number: int, result_path: Path) -> None:
 def write_to_output(
     writer: PdfWriter,
     result_path: Path,
-    message_on_success: Optional[str] = None,
+    message_on_success: str | None = None,
 ) -> None:
     try:
         if result_path.with_suffix(PDF_SUFFIX).exists():
